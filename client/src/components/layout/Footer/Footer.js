@@ -42,7 +42,7 @@ const Footer = () => {
                     </div>
                     <div className="footer-col">
                         <h4>Cart</h4>
-                        <div class="social-links">
+                        <div className="social-links">
                             <a href="#">
                                 <i className="fab fa-instagram"></i>
                             </a>

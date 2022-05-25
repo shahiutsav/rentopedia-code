@@ -56,3 +56,12 @@ h4 {
     box-shadow: 0 0 5px rgba(15, 15, 15, 0.25);
     transform: translateY(-5px);
 }
+
+.review-section {
+    text-decoration: none;
+    color: #555;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    display: table;
+    margin: 0 auto;
+}

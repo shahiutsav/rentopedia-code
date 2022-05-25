@@ -1,32 +1,27 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import "./Books.css";
-import dummyImage from "../images/lf.jpeg";
+import MetaData from "../layout/MetaData";
+import { getBook } from "../../actions/bookAction";
+import { useSelector, useDispatch } from "react-redux";
 
 import BookCard from "./BookCard";
-import MetaData from "../layout/Metadata";
-
-const book = {
-    name: "The Book Thief",
-    images: [{ url: dummyImage }],
-    price: "NRs. 1200",
-    _id: "dummyBook",
-};
 
 const Book = () => {
+    const dispatch = useDispatch();
+    const { loading, error, books, bookCount } = useSelector(
+        (state) => state.books
+    );
+
+    useEffect(() => {
+        dispatch(getBook());
+    }, [dispatch]);
     return (
         <Fragment>
             <MetaData title="Rentopedia" />
             <div className="small-container">
                 <h2 className="title">Featured Books</h2>
                 <div className="row">
-                    <BookCard book={book} />
-                    <BookCard book={book} />
-                    <BookCard book={book} />
-                    <BookCard book={book} />
-                    <BookCard book={book} />
-                    <BookCard book={book} />
-                    <BookCard book={book} />
-                    <BookCard book={book} />
+                    {books && books.map((book) => <BookCard book={book} />)}
                 </div>
             </div>
         </Fragment>
