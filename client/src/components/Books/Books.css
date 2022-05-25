@@ -1,0 +1,67 @@
+.small-container {
+    max-width: 75rem;
+    margin: auto;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.row {
+    justify-content: center;
+}
+
+.title {
+    text-align: center;
+    margin: 0 auto 80px;
+    position: relative;
+    line-height: 60px;
+    color: #555;
+}
+
+.title::after {
+    content: "";
+    background: #ff523b;
+    width: 80px;
+    height: 5px;
+    border-radius: 5px;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.col-4 {
+    flex-basis: 25%;
+    padding: 10px;
+    min-width: 200px;
+    margin-bottom: 50px;
+    transition: transform 0.5s;
+    text-decoration: none;
+}
+
+.col-4 img {
+    width: 100%;
+}
+
+h4 {
+    color: #555;
+    font-weight: normal;
+}
+
+.col-4 p {
+    font-size: 14px;
+    color: #555;
+}
+
+.col-4:hover {
+    box-shadow: 0 0 5px rgba(15, 15, 15, 0.25);
+    transform: translateY(-5px);
+}
+
+.review-section {
+    text-decoration: none;
+    color: #555;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    display: table;
+    margin: 0 auto;
+}
