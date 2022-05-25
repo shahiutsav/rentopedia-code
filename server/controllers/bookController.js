@@ -1,3 +1,5 @@
+const { json } = require("body-parser");
+const { addListener } = require("process");
 const Book = require("../models/bookModel");
 
 // Create Book -- Admin
@@ -19,7 +21,25 @@ exports.getAllBooks = async (req, res) => {
     });
 };
 
-// Update Book -- Admin
+// Get Book Details
+exports.getBookDetails = async (req, res, next) => {
+    const book = await Book.findById(req.params.id);
+
+    if (!book) {
+        return res.status(500).json({
+            success: "false",
+            message: "Book not found",
+        });
+    }
+
+    res.status(200).json({
+        success: true,
+        book,
+    });
+};
+
+// Update Product -- Admin
+
 exports.updateBook = async (req, res, next) => {
     let book = await Book.findById(req.params.id);
 
