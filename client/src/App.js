@@ -1,8 +1,8 @@
-import { Fragment } from "react";
 import "./App.css";
+import Navbar from "./components/Navbar/Navbar";
 
 function App() {
-    return <Fragment></Fragment>;
+    return <Navbar />;
 }
 
 export default App;
