@@ -1,53 +1,47 @@
-const { json } = require("body-parser");
-const { addListener } = require("process");
 const Book = require("../models/bookModel");
+const ErrorHandler = require("../utils/errorHandler");
+const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 
 // Create Book -- Admin
-exports.createBook = async (req, res, next) => {
+exports.createBook = catchAsyncErrors(async (req, res, next) => {
     const book = await Book.create(req.body);
 
     res.status(201).json({
         success: true,
         book,
     });
-};
+});
 
 // Get All Books
-exports.getAllBooks = async (req, res) => {
+exports.getAllBooks = catchAsyncErrors(async (req, res) => {
     const books = await Book.find();
     res.status(200).json({
         success: true,
         books,
     });
-};
+});
 
 // Get Book Details
-exports.getBookDetails = async (req, res, next) => {
+exports.getBookDetails = catchAsyncErrors(async (req, res, next) => {
     const book = await Book.findById(req.params.id);
 
     if (!book) {
-        return res.status(500).json({
-            success: "false",
-            message: "Book not found",
-        });
+        return next(new ErrorHandler("Book not found", 404));
     }
 
     res.status(200).json({
         success: true,
         book,
     });
-};
+});
 
 // Update Product -- Admin
 
-exports.updateBook = async (req, res, next) => {
+exports.updateBook = catchAsyncErrors(async (req, res, next) => {
     let book = await Book.findById(req.params.id);
 
     if (!book) {
-        return res.status(500).json({
-            success: false,
-            message: "Book not found",
-        });
+        return next(new ErrorHandler("Book not found", 404));
     }
 
     book = await Book.findByIdAndUpdate(req.params.id, req.body, {
@@ -60,17 +54,14 @@ exports.updateBook = async (req, res, next) => {
         succes: true,
         book,
     });
-};
+});
 
 // Delete Book -- Admin
-exports.deleteBook = async (req, res, next) => {
+exports.deleteBook = catchAsyncErrors(async (req, res, next) => {
     const book = await Book.findById(req.params.id);
 
     if (!book) {
-        return res.status(500).json({
-            success: false,
-            message: "Book not found",
-        });
+        return next(new ErrorHandler("Book not found", 404));
     }
     await book.remove();
 
@@ -78,4 +69,4 @@ exports.deleteBook = async (req, res, next) => {
         success: true,
         message: "Book deleted successfully",
     });
-};
+});
