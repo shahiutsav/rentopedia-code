@@ -1,6 +1,7 @@
 const Book = require("../models/bookModel");
 const ErrorHandler = require("../utils/errorHandler");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
+const ApiFeatures = require("../utils/apiFeatures");
 
 // Create Book -- Admin
 exports.createBook = catchAsyncErrors(async (req, res, next) => {
@@ -14,10 +15,18 @@ exports.createBook = catchAsyncErrors(async (req, res, next) => {
 
 // Get All Books
 exports.getAllBooks = catchAsyncErrors(async (req, res) => {
-    const books = await Book.find();
+    const resultPerPage = 8;
+    const bookCount = await Book.countDocuments();
+    const apiFeature = new ApiFeatures(Book.find(), req.query)
+        .search()
+        .filter()
+        .pagination(resultPerPage);
+
+    const books = await apiFeature.query;
     res.status(200).json({
         success: true,
         books,
+        bookCount,
     });
 });
 
