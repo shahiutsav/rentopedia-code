@@ -5,6 +5,7 @@ import { useAlert } from "react-alert";
 
 // Additional components
 import ReactStars from "react-rating-stars-component";
+import ReviewCard from "./ReviewCard.js";
 import Loader from "../layout/Loader/Loader";
 
 // Import for book actions
@@ -86,6 +87,18 @@ const BookDetails = () => {
                             </div>
                         </div>
                     </div>
+
+                    <h1 className="reviewsHeading">Reviews</h1>
+                    {book.reviews && book.reviews[0] ? (
+                        <div className="reviews">
+                            {book.reviews &&
+                                book.reviews.map((review) => (
+                                    <ReviewCard review={review} />
+                                ))}
+                        </div>
+                    ) : (
+                        <p className="noReviews">No Reviews Yet</p>
+                    )}
                 </Fragment>
             )}
         </Fragment>
