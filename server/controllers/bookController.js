@@ -27,6 +27,7 @@ exports.getAllBooks = catchAsyncErrors(async (req, res) => {
         success: true,
         books,
         bookCount,
+        resultPerPage,
     });
 });
 

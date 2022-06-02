@@ -8,12 +8,12 @@ import {
 } from "../constants/bookConstants";
 
 export const getBook =
-    (keyword = "") =>
+    (keyword = "", currentPage = 1) =>
     async (dispatch) => {
         try {
             dispatch({ type: ALL_BOOK_REQUEST });
 
-            let link = `/api/v1/books?keyword=${keyword}`;
+            let link = `/api/v1/books?keyword=${keyword}&page=${currentPage}`;
 
             const { data } = await axios.get(link);
 
