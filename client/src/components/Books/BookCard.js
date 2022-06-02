@@ -12,7 +12,7 @@ const BookCard = ({ book }) => {
         size: window.innerWidth < 600 ? 20 : 25,
     };
     return (
-        <Link className="col-4" to={book._id}>
+        <Link className="col-4" to={`/book/${book._id}`}>
             <img src={book.cover[0].url} alt="" />
             <h4>{book.title}</h4>
             <div className="review-section">
