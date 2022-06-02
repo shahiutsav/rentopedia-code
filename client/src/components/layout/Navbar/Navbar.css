@@ -39,6 +39,7 @@
 }
 
 .nav-links {
+    font-size: medium;
     color: #e1b4ab;
     text-decoration: none;
     padding: 0.5rem 1rem;
@@ -88,6 +89,7 @@
     }
 
     .nav-links {
+        font-size: medium;
         text-align: center;
         padding: 2rem;
         width: 100%;
