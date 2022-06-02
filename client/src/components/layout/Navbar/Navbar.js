@@ -4,6 +4,8 @@ import { Button } from "./Button";
 import logo from "../../images/logo.png";
 import "./Navbar.css";
 
+import Search from "../../Search/Search";
+
 class Navbar extends Component {
     state = { clicked: false };
 
@@ -14,7 +16,9 @@ class Navbar extends Component {
     render() {
         return (
             <nav className="navbar-items">
-                <img className="logo-picture" src={logo} alt="logo here" />
+                <a href="/">
+                    <img className="logo-picture" src={logo} alt="logo here" />
+                </a>
                 <div className="menu-icon" onClick={this.handleClick}>
                     <i
                         className={

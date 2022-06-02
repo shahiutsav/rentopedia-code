@@ -7,23 +7,27 @@ import {
     CLEAR_ERRORS,
 } from "../constants/bookConstants";
 
-export const getBook = () => async (dispatch) => {
-    try {
-        dispatch({ type: ALL_BOOK_REQUEST });
+export const getBook =
+    (keyword = "") =>
+    async (dispatch) => {
+        try {
+            dispatch({ type: ALL_BOOK_REQUEST });
 
-        const { data } = await axios.get("/api/v1/books");
+            let link = `/api/v1/books?keyword=${keyword}`;
 
-        dispatch({
-            type: ALL_BOOK_SUCCESS,
-            payload: data,
-        });
-    } catch (error) {
-        dispatch({
-            type: ALL_BOOK_FAIL,
-            payload: error.response.data.message,
-        });
-    }
-};
+            const { data } = await axios.get(link);
+
+            dispatch({
+                type: ALL_BOOK_SUCCESS,
+                payload: data,
+            });
+        } catch (error) {
+            dispatch({
+                type: ALL_BOOK_FAIL,
+                payload: error.response.data.message,
+            });
+        }
+    };
 
 // Clearing Errors
 export const clearErrors = () => async (dispatch) => {
