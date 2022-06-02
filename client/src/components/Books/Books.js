@@ -3,19 +3,22 @@ import "./Books.css";
 import MetaData from "../layout/MetaData";
 import { getBook } from "../../actions/bookAction";
 import { useSelector, useDispatch } from "react-redux";
-
-import Pagination from "react-js-pagination";
-
-import BookCard from "./BookCard";
-
 import { useParams } from "react-router-dom";
 
+// Importing third party React components
+import Pagination from "react-js-pagination";
+import { useAlert } from "react-alert";
+
+// Importing custom components
+import BookCard from "./BookCard";
+
 const Book = () => {
+    const alert = useAlert();
     const { keyword } = useParams();
     const dispatch = useDispatch();
     const [currentPage, setCurrentPage] = useState(1);
 
-    const {books, bookCount, resultPerPage } = useSelector(
+    const { error, books, bookCount, resultPerPage } = useSelector(
         (state) => state.books
     );
 
@@ -24,8 +27,12 @@ const Book = () => {
     };
 
     useEffect(() => {
+        if (error) {
+            return alert.error(error);
+        }
         dispatch(getBook(keyword, currentPage));
-    }, [dispatch, keyword, currentPage]);
+    }, [dispatch, error, keyword, currentPage]);
+
     return (
         <Fragment>
             <MetaData title="Rentopedia" />
