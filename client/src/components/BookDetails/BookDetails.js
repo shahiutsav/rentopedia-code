@@ -47,7 +47,7 @@ const BookDetails = () => {
                 <Fragment>
                     {/* Book Details section */}
                     <div className="small-container book-details">
-                        <div className="row">
+                        <div className="row-book-detail">
                             {/* Image Section */}
                             <div className="col-2">
                                 {book.cover &&

@@ -1,9 +1,16 @@
+.row-book-detail {
+    margin: 0 100px;
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+}
 .col-2 {
     flex-basis: 50%;
 }
 
 .book-details .col-2 img {
-    width: 400px;
+    height: 33rem;
+    width: 21rem;
+    object-fit: cover;
     padding: 0;
 }
 
