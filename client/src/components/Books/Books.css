@@ -1,7 +1,5 @@
 .small-container {
-    margin: auto;
-    padding-left: 25px;
-    padding-right: 25px;
+    padding: 100px 0 0;
 }
 
 .row {
