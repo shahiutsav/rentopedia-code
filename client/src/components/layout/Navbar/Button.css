@@ -1,9 +1,10 @@
 :root {
-    --primary: #e1b4ab;
+    --primary: #34495e;
 }
 
 .btn {
-    padding: 8px 20px;
+    border: 1px solid transparent;
+    /* padding: 8px 20px; */
     border-radius: 4px;
     outline: none;
     border: none;
@@ -11,11 +12,11 @@
 }
 
 .btn:hover {
-    padding: 8px 20px;
     transition: all 0.3s ease-out;
     background: #fff;
-    color: #493a30;
+    color: #34495e;
     transition: 250ms;
+    border: 1px solid #34495e;
 }
 
 .btn--primary {

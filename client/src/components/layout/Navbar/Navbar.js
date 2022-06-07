@@ -4,8 +4,6 @@ import { Button } from "./Button";
 import logo from "../../images/logo.png";
 import "./Navbar.css";
 
-import Search from "../../Search/Search";
-
 class Navbar extends Component {
     state = { clicked: false };
 

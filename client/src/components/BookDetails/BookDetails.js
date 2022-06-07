@@ -33,7 +33,7 @@ const BookDetails = () => {
     const options = {
         edit: false,
         color: "rgba(20, 20, 20, 0.1)",
-        activeColor: "rgb(254, 180, 42)",
+        activeColor: "#ffc107",
         value: book.rating,
         isHalf: true,
         size: window.innerWidth < 600 ? 20 : 25,
@@ -47,7 +47,7 @@ const BookDetails = () => {
                 <Fragment>
                     {/* Book Details section */}
                     <div className="small-container book-details">
-                        <div className="row">
+                        <div className="row-book-detail">
                             {/* Image Section */}
                             <div className="col-2">
                                 {book.cover &&

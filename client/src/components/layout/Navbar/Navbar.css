@@ -1,15 +1,14 @@
 .navbar-items {
-    background: linear-gradient(
-        90deg,
-        rgba(73, 58, 48, 0.9) 0%,
-
-        rgba(73, 58, 48, 1) 100%
-    );
+    width: 100%;
+    background-color: white;
+    border-bottom: 1px solid #34495e;
     height: 80px;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 1.2rem;
+    position: fixed;
+    z-index: 1;
 }
 
 .logo-picture {
@@ -40,20 +39,20 @@
 
 .nav-links {
     font-size: medium;
-    color: #e1b4ab;
+    color: #34495e;
     text-decoration: none;
     padding: 0.5rem 1rem;
 }
 
 .nav-links:hover {
-    background-color: #e1b4ab;
-    color: #493a30;
+    background-color: #34495e;
+    color: white;
     border-radius: 4px;
     transition: all 0.2s ease-out;
 }
 
 .fa-bars {
-    color: #fff;
+    color: #34495e;
 }
 
 .nav-links-mobile {
@@ -81,7 +80,7 @@
     }
 
     .nav-menu.active {
-        background: #493a30;
+        background: #fff;
         left: 0;
         opacity: 1;
         transition: all 0.5s ease;
@@ -96,7 +95,7 @@
         display: table;
     }
     .nav-links:hover {
-        background-color: #e1b4ab;
+        background-color: #34495e;
         border-radius: 0;
     }
 
@@ -118,24 +117,27 @@
     }
 
     .fa-times {
-        color: #fff;
+        color: #34495e;
         font-size: 2rem;
     }
 
     .nav-links-mobile {
+        border: 1px solid transparent;
         display: block;
         text-align: center;
         padding: 1.5rem;
         margin: 2rem auto;
         border-radius: 4px;
         width: 80%;
-        background: #e1b4ab;
+        background: #34495e;
         text-decoration: none;
-        color: #493a30;
+        color: #fff;
         font-size: 1.5rem;
     }
     .nav-links-mobile:hover {
+        border: 1px solid #34495e;
         background: #fff;
+        color: #34495e;
         transition: 250ms;
     }
 
