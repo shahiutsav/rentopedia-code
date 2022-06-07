@@ -5,19 +5,23 @@ import Book from "./components/Books/Books";
 import Search from "./components/Search/Search";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import BookDetails from "./components/BookDetails/BookDetails";
+import LoginSignUp from "./components/User/LoginSignUp";
 
 function App() {
     return (
-        <Router>
+        <div>
             <Navbar />
-            <Routes>
-                <Route path="/" element={<Book />} />
-                <Route path="/book/:id" element={<BookDetails />} />
-                <Route path="/books/:keyword" element={<Book />} />
-                <Route path="/search" element={<Search />} />
-            </Routes>
+            <Router>
+                <Routes>
+                    <Route path="/" element={<Book />} />
+                    <Route path="/book/:id" element={<BookDetails />} />
+                    <Route path="/books/:keyword" element={<Book />} />
+                    <Route path="/search" element={<Search />} />
+                    <Route path="/login" element={<LoginSignUp />} />
+                </Routes>
+            </Router>
             <Footer />
-        </Router>
+        </div>
     );
 }
 
