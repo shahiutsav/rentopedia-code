@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const bookSchema = mongoose.Schema({
+const bookSchema = new mongoose.Schema({
     title: {
         type: String,
         required: [true, "Please enter the name of the Book"],
@@ -52,6 +52,11 @@ const bookSchema = mongoose.Schema({
             },
         },
     ],
+    user: {
+        type: mongoose.Schema.ObjectId,
+        ref: "User",
+        required: true,
+    },
     createdAt: {
         type: Date,
         default: Date.now,

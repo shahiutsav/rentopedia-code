@@ -1,4 +1,4 @@
-export const MenuItems = [
+export const MenuItemsAuthenticated = [
     {
         title: "Home",
         url: "/",
@@ -13,10 +13,5 @@ export const MenuItems = [
         title: "Search",
         url: "/search",
         cName: "nav-links",
-    },
-    {
-        title: "Login",
-        url: "/login",
-        cName: "nav-links-mobile",
     },
 ];

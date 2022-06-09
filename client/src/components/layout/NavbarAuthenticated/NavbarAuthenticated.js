@@ -1,16 +1,14 @@
 import React, { Component } from "react";
-import { MenuItems } from "./MenuItems";
-import { Button } from "./Button";
+import { MenuItemsAuthenticated } from "./MenuItems";
 import logo from "../../images/logo.png";
-import "./Navbar.css";
+import "../Navbar/Navbar.css";
 
-class Navbar extends Component {
+class NavbarAuthenticated extends Component {
     state = { clicked: false };
 
     handleClick = () => {
         this.setState({ clicked: !this.state.clicked });
     };
-
     render() {
         return (
             <nav className="navbar-items">
@@ -29,7 +27,7 @@ class Navbar extends Component {
                         this.state.clicked ? "nav-menu active" : "nav-menu"
                     }
                 >
-                    {MenuItems.map((item, index) => {
+                    {MenuItemsAuthenticated.map((item, index) => {
                         return (
                             <li key={index}>
                                 <a className={item.cName} href={item.url}>
@@ -39,12 +37,9 @@ class Navbar extends Component {
                         );
                     })}
                 </ul>
-                <a href="/login">
-                    <Button>Login</Button>
-                </a>
             </nav>
         );
     }
 }
 
-export default Navbar;
+export default NavbarAuthenticated;
