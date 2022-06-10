@@ -1,21 +1,19 @@
 .row-book-detail {
-    margin: 0 100px;
+    width: 60%;
+    margin: auto;
     display: grid;
     grid-template-columns: repeat(2, auto);
-}
-.col-2 {
-    flex-basis: 50%;
 }
 
 .book-details .col-2 img {
     height: 33rem;
     width: 21rem;
     object-fit: cover;
-    padding: 0;
 }
 
 .book-details .col-2 {
     padding: 20px;
+    margin: 0;
 }
 
 .book-details h4 {
@@ -28,7 +26,7 @@
     width: 50px;
     height: 40px;
     padding-left: 10px;
-    font-size: 20px;
+    font-size: 18px;
     margin-right: 10px;
     border: 1px solid #34495e;
     border-radius: 5px;
@@ -49,7 +47,6 @@ input:focus {
     background: #34495e;
     color: white;
     padding: 8px 30px;
-    margin: 30px 0;
     border-radius: 50px;
     cursor: pointer;
     transition: all 0.5s;
@@ -68,11 +65,12 @@ input:focus {
     background: #d35400;
     color: white;
     padding: 8px 15px;
-    margin: 20px;
+    margin: 10px 20px;
     border-radius: 30px;
     cursor: pointer;
     transition: all 0.5s;
     outline: none;
+    display: inline;
 }
 
 .btn-submit-review:hover {
@@ -106,6 +104,11 @@ input:focus {
     max-width: 1100px;
     text-align: center;
     justify-content: center;
+}
+
+.col-2 p {
+    width: 25vw;
+    font-size: 1rem;
 }
 
 /* Review card portion */
@@ -160,23 +163,60 @@ input:focus {
     color: rgba(0, 0, 0, 0.548);
 }
 
-@media only screen and (max-width: 930px) {
-    .col-2 {
-        flex-basis: 100%;
-        padding: 20px 0;
+@media only screen and (max-width: 1024px) {
+    .row-book-detail {
+        width: 100%;
+        margin: auto;
+        display: grid;
+        grid-template-columns: repeat(2, auto);
     }
+
     .book-details .col-2 img {
-        width: 300px;
+        height: 27rem;
+        width: 17rem;
         padding: 0;
     }
 
     .book-details .col-2 h1 {
-        font-size: 20px;
-        line-height: 22px;
+        font-size: 18px;
     }
 
     .book-details .col-2 h4 {
-        font-size: 16px;
+        font-size: 14px;
+    }
+
+    .col-2 p {
+        width: 100%;
+        font-size: 0.8rem;
+    }
+
+    .review-section-details {
+        margin-bottom: 10px;
+    }
+
+    .review-section-details span {
+        font-size: 0.8rem;
+    }
+
+    .btn-submit-review {
+        font-size: 0.7rem;
+    }
+
+    .col-2 input {
+        font-size: 0.7rem;
+        width: 24px;
+        height: 24px;
+    }
+
+    .btn-add-to-cart {
+        font-size: 0.6rem;
+    }
+}
+
+@media (max-width: 425px) {
+    .row-book-detail {
+        display: flex;
+        flex-direction: column;
     }
 }
 
