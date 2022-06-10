@@ -6,8 +6,9 @@
     width: 100%;
     display: grid;
     grid-template-columns: repeat(3, auto);
-    gap: 75px 75px;
+    gap: 4rem 2rem;
     justify-content: center;
+    margin: auto;
 }
 
 .title {
@@ -73,7 +74,7 @@
     color: white;
 }
 
-@media (max-width: 1008px) {
+@media (max-width: 1024px) {
     .row {
         grid-template-columns: repeat(2, auto);
     }
