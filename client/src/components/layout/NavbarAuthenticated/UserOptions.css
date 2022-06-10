@@ -1,20 +1,21 @@
-.speedDial {
+.speed-dial {
     display: block;
-    position: absolute;
+    position: fixed;
     top: 0;
     right: 0;
-    transform: translate(-100%, 20%);
+    transform: translate(-100%, 5%);
 }
 
-.speedDialIcon {
+.speed-dial-icon {
     width: 56px;
     height: 56px;
+    object-fit: cover;
     border-radius: 100%;
 }
 
 @media screen and (max-width: 960px) {
-    .speedDial {
-        right: 25px;
-        transform: translate(-100%, 4%);
+    .speed-dial {
+        right: 20px;
+        transform: translate(-100%, 5%);
     }
 }
