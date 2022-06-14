@@ -12,6 +12,8 @@ import store from "./store";
 import { loadUser } from "./actions/userAction";
 import UserOptions from "./components/layout/NavbarAuthenticated/UserOptions";
 import { useSelector } from "react-redux";
+import ForgotPassword from "./components/User/ForgotPassword";
+import ResetPassword from "./components/User/ResetPassword";
 
 function App() {
     const { isAuthenticated, user } = useSelector((state) => state.user);
@@ -35,6 +37,14 @@ function App() {
                     <Route path="/books/:keyword" element={<Book />} />
                     <Route path="/search" element={<Search />} />
                     <Route path="/login" element={<LoginSignUp />} />
+                    <Route
+                        path="/password/forgot"
+                        element={<ForgotPassword />}
+                    />
+                    <Route
+                        path="/password/reset/:token"
+                        element={<ResetPassword />}
+                    />
                 </Routes>
             </Router>
             <Footer />
