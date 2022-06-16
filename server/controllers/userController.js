@@ -147,16 +147,6 @@ exports.getUserDetails = catchAsyncErrors(async (req, res, next) => {
     });
 });
 
-// Get User Detail
-exports.getUserDetails = catchAsyncErrors(async (req, res, next) => {
-    const user = await User.findById(req.user.id);
-
-    res.status(200).json({
-        success: true,
-        user,
-    });
-});
-
 // Update User password
 exports.updatePassword = catchAsyncErrors(async (req, res, next) => {
     const user = await User.findById(req.user.id).select("+password");
@@ -176,4 +166,20 @@ exports.updatePassword = catchAsyncErrors(async (req, res, next) => {
     await user.save();
 
     sendToken(user, 200, res);
+});
+
+// Update User Profile
+exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
+    const newUserDate = {
+        name: req.body.name,
+        email: req.body.email,
+    };
+
+    const user = await User.findByIdAndUpdate(req.user.id, newUserDate, {
+        new: true,
+        runValidators: true,
+        useFindAndModify: false,
+    });
+
+    res.status(200).json({ success: true });
 });
