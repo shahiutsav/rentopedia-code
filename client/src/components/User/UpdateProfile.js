@@ -77,18 +77,18 @@ const UpdateProfile = () => {
             ) : (
                 <Fragment>
                     <MetaData title="Update Profile" />
-                    <div className="updateProfileContainer">
-                        <div className="updateProfileBox">
-                            <h2 className="updateProfileHeading">
+                    <div className="update-profile-container">
+                        <div className="update-profile-box">
+                            <h2 className="update-profile-heading">
                                 Update Profile
                             </h2>
 
                             <form
-                                className="updateProfileForm"
+                                className="update-profile-form"
                                 encType="multipart/form-data"
                                 onSubmit={updateProfileSubmit}
                             >
-                                <div className="updateProfileName">
+                                <div className="update-profile-name">
                                     <FaceIcon />
                                     <input
                                         type="text"
@@ -101,7 +101,7 @@ const UpdateProfile = () => {
                                         }
                                     />
                                 </div>
-                                <div className="updateProfileEmail">
+                                <div className="update-profile-email">
                                     <MailOutlineIcon />
                                     <input
                                         type="email"
@@ -131,7 +131,7 @@ const UpdateProfile = () => {
                                 <input
                                     type="submit"
                                     value="Update"
-                                    className="updateProfileBtn"
+                                    className="update-profile-button"
                                 />
                             </form>
                         </div>
