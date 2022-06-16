@@ -38,7 +38,7 @@ const UserOptions = ({ user }) => {
         navigate("/orders");
     }
     function account() {
-        navigate("/account");
+        navigate("/me");
     }
     function cart() {
         navigate("/cart");

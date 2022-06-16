@@ -15,7 +15,7 @@ module.exports = (err, req, res, next) => {
     if (err.code === 11000) {
         const message = `The provided ${Object.keys(
             err.keyValue
-        )} has already been registered`;
+        )} is already registered. Please use another.`;
         err = new ErrorHandler(message, 400);
     }
 
