@@ -18,6 +18,7 @@ import Profile from "./components/User/Profile.js";
 import UpdatePassword from "./components/User/UpdatePassword";
 import UpdateProfile from "./components/User/UpdateProfile.js";
 import ProtectedRoute from "./components/Route/ProtectedRoute";
+import Cart from "./components/Cart/Cart";
 
 function App() {
     const { isAuthenticated, user } = useSelector((state) => state.user);
@@ -73,6 +74,7 @@ function App() {
                             </ProtectedRoute>
                         }
                     />
+                    <Route path="/cart" element={<Cart />} />
                 </Routes>
             </Router>
             <Footer />

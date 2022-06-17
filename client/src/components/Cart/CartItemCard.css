@@ -1,0 +1,50 @@
+.cart-item-card {
+    justify-content: left;
+    position: relative;
+    margin: 15px 0;
+    display: flex;
+    gap: 15px;
+}
+
+.book-cover {
+    left: 15px;
+    top: -20px;
+    height: 8rem;
+    width: 5rem;
+    object-fit: cover;
+}
+
+.cart-item-card > div {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.cart-item-card > div > a {
+    display: flex;
+    color: rgba(24, 24, 24, 0.815);
+    text-decoration: none;
+}
+
+.cart-item-card > div > p {
+    color: #c0392b;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 600px) {
+    .cart-item-card {
+        padding: 3vmax;
+        height: 25vmax;
+    }
+    .cart-item-card > img {
+        width: 10vmax;
+    }
+
+    .cart-item-card > div {
+        margin: 1vmax 2vmax;
+    }
+
+    .cart-item-card > div {
+        font-size: 12px;
+    }
+}
