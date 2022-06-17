@@ -45,6 +45,10 @@ const bookSchema = new mongoose.Schema({
                 ref: "User",
                 required: true,
             },
+            avatar: {
+                type: String,
+                required: true,
+            },
             name: {
                 type: String,
                 required: true,

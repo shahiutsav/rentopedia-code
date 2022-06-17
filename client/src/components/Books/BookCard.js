@@ -8,7 +8,7 @@ const BookCard = ({ book }) => {
         edit: false,
         color: "rgba(20, 20, 20, 0.1",
         activeColor: "#ffc107",
-        value: book.rating,
+        value: book.ratings,
         isHalf: true,
         size: window.innerWidth < 600 ? 20 : 25,
     };

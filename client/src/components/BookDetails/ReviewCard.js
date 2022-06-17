@@ -15,7 +15,7 @@ const ReviewCard = ({ review }) => {
             <div className="head-review">
                 <img
                     className="review-image"
-                    src="https://img.search.brave.com/IuiHnmk9H8K3pRO6_52C2smHfu5Cs8aj8-p9t9etzxw/rs:fit:1046:1200:1/g:ce/aHR0cHM6Ly9pLnJl/ZGQuaXQvOGN6c2Zr/andzb2s0MS5qcGc"
+                    src={review.avatar}
                     width="100px"
                 />
             </div>
