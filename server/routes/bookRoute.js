@@ -5,6 +5,7 @@ const {
     updateBook,
     deleteBook,
     getBookDetails,
+    createBookReview,
 } = require("../controllers/bookController");
 const { isAuthenticatedUser, authorizeRoles } = require("../middleware/auth");
 
@@ -21,5 +22,7 @@ router
     .put(isAuthenticatedUser, authorizeRoles("admin"), updateBook)
     .delete(isAuthenticatedUser, authorizeRoles("admin"), deleteBook)
     .get(getBookDetails);
+
+router.route("/review").put(isAuthenticatedUser, createBookReview);
 
 module.exports = router;

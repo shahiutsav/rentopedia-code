@@ -32,13 +32,19 @@ const bookSchema = new mongoose.Schema({
     ],
     genre: {
         type: String,
-        required: [true, "Please select the book's category"],
+        required: [true, "Please select the book's genre"],
     },
     numOfReviews: {
+        type: Number,
         default: 0,
     },
     reviews: [
         {
+            user: {
+                type: mongoose.Schema.ObjectId,
+                ref: "User",
+                required: true,
+            },
             name: {
                 type: String,
                 required: true,
