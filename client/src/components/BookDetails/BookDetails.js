@@ -23,7 +23,7 @@ import {
     newReview,
 } from "../../actions/bookAction";
 import MetaData from "../layout/MetaData.js";
-import { NEW_REVIEW_RESET } from "../../constants/bookConstants";
+import { addItemsToCart } from "../../actions/cartAction";
 
 // Style import
 import "./BookDetails.css";
@@ -34,6 +34,24 @@ const BookDetails = () => {
     const alert = useAlert();
 
     const { book, loading, error } = useSelector((state) => state.bookDetails);
+
+    const increaseQuantity = () => {
+        if (6 <= quantity) return;
+        const qty = quantity + 1;
+        setQuantity(qty);
+    };
+
+    const decreaseQuantity = () => {
+        if (1 >= quantity) return;
+
+        const qty = quantity - 1;
+        setQuantity(qty);
+    };
+
+    const addToCartHandler = () => {
+        dispatch(addItemsToCart(id, quantity));
+        alert.success("Item Added To Cart");
+    };
 
     const submitReviewToggle = () => {
         open ? setOpen(false) : setOpen(true);
@@ -69,6 +87,7 @@ const BookDetails = () => {
         size: window.innerWidth < 600 ? 20 : 25,
     };
 
+    const [quantity, setQuantity] = useState(1);
     const [rating, setRating] = useState(0);
     const [open, setOpen] = useState(false);
     const [comment, setComment] = useState("");
@@ -155,10 +174,25 @@ const BookDetails = () => {
                                 </Dialog>
 
                                 {/* Add to cart section */}
-                                <input type="number" value="1" />
-                                <button className="btn-add-to-cart">
-                                    Add To Cart
-                                </button>
+                                <div className="cart-section">
+                                    <div className="cart-actions">
+                                        <button onClick={decreaseQuantity}>
+                                            -
+                                        </button>
+                                        <p className="cart-quantity">
+                                            {quantity}
+                                        </p>
+                                        <button onClick={increaseQuantity}>
+                                            +
+                                        </button>
+                                    </div>
+                                    <button
+                                        onClick={addToCartHandler}
+                                        className="btn-add-to-cart"
+                                    >
+                                        Add To Cart
+                                    </button>
+                                </div>
 
                                 {/* Book Description */}
                                 <h3>Description</h3>
@@ -172,7 +206,10 @@ const BookDetails = () => {
                         <div className="reviews">
                             {book.reviews &&
                                 book.reviews.map((review) => (
-                                    <ReviewCard review={review} />
+                                    <ReviewCard
+                                        review={review}
+                                        key={review.user}
+                                    />
                                 ))}
                         </div>
                     ) : (
