@@ -120,3 +120,63 @@ exports.createBookReview = catchAsyncErrors(async (req, res, next) => {
         success: true,
     });
 });
+
+// Get all reviews of a book
+exports.getBookReviews = catchAsyncErrors(async (req, res, next) => {
+    const book = await Book.findById(req.query.id);
+
+    if (!book) {
+        return next(new ErrorHandler("Book not found", 404));
+    }
+
+    res.status(200).json({
+        success: true,
+        reviews: book.reviews,
+    });
+});
+
+// Delete review
+exports.deleteReview = catchAsyncErrors(async (req, res, next) => {
+    const book = await Book.findById(req.query.bookId);
+
+    if (!book) {
+        return next(new ErrorHandler("Book not found", 404));
+    }
+
+    const reviews = book.reviews.filter(
+        (rev) => rev._id.toString() !== req.query.id.toString()
+    );
+
+    let avg = 0;
+    reviews.forEach((rev) => {
+        avg += rev.rating;
+    });
+
+    let ratings = 0;
+
+    if (reviews.length === 0) {
+        ratings = 0;
+    } else {
+        ratings = avg / reviews.length;
+    }
+
+    const numOfReviews = reviews.length;
+
+    await Book.findByIdAndUpdate(
+        req.query.bookId,
+        {
+            reviews,
+            ratings,
+            numOfReviews,
+        },
+        {
+            new: true,
+            runValidators: true,
+            useFindAndModify: false,
+        }
+    );
+
+    res.status(200).json({
+        success: true,
+    });
+});

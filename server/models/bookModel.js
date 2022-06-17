@@ -14,7 +14,7 @@ const bookSchema = new mongoose.Schema({
         type: Number,
         required: [true, "Please enter the price for the book"],
     },
-    rating: {
+    ratings: {
         type: Number,
         default: 0,
     },
