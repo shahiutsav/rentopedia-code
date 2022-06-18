@@ -22,11 +22,25 @@ import Cart from "./components/Cart/Cart";
 import Shipping from "./components/Cart/Shipping";
 import ConfirmOrder from "./components/Cart/ConfirmOrder";
 import Payment from "./components/Cart/Payment.js";
+import axios from "axios";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
 
 function App() {
     const { isAuthenticated, user } = useSelector((state) => state.user);
+
+    const [stripeApiKey, setStripeApiKey] = React.useState("");
+
+    async function getStripeApiKey() {
+        const { data } = await axios.get("/api/v1/stripeapikey");
+
+        setStripeApiKey(data.stripeApiKey);
+    }
+
     React.useEffect(() => {
         store.dispatch(loadUser());
+
+        getStripeApiKey();
     }, []);
 
     return (
@@ -95,12 +109,17 @@ function App() {
                             </ProtectedRoute>
                         }
                     />
+
                     <Route
                         path="/process/payment"
                         element={
-                            <ProtectedRoute>
-                                <Payment />
-                            </ProtectedRoute>
+                            stripeApiKey && (
+                                <Elements stripe={loadStripe(stripeApiKey)}>
+                                    <ProtectedRoute>
+                                        <Payment />
+                                    </ProtectedRoute>
+                                </Elements>
+                            )
                         }
                     />
                 </Routes>
