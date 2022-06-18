@@ -19,6 +19,9 @@ import UpdatePassword from "./components/User/UpdatePassword";
 import UpdateProfile from "./components/User/UpdateProfile.js";
 import ProtectedRoute from "./components/Route/ProtectedRoute";
 import Cart from "./components/Cart/Cart";
+import Shipping from "./components/Cart/Shipping";
+import ConfirmOrder from "./components/Cart/ConfirmOrder";
+import Payment from "./components/Cart/Payment.js";
 
 function App() {
     const { isAuthenticated, user } = useSelector((state) => state.user);
@@ -75,6 +78,31 @@ function App() {
                         }
                     />
                     <Route path="/cart" element={<Cart />} />
+
+                    <Route
+                        path="/shipping"
+                        element={
+                            <ProtectedRoute>
+                                <Shipping />
+                            </ProtectedRoute>
+                        }
+                    />
+                    <Route
+                        path="/order/confirm"
+                        element={
+                            <ProtectedRoute>
+                                <ConfirmOrder />
+                            </ProtectedRoute>
+                        }
+                    />
+                    <Route
+                        path="/process/payment"
+                        element={
+                            <ProtectedRoute>
+                                <Payment />
+                            </ProtectedRoute>
+                        }
+                    />
                 </Routes>
             </Router>
             <Footer />

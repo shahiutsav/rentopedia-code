@@ -1,0 +1,118 @@
+.shipping-container {
+    width: 100vw;
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.shipping-box {
+    background-color: white;
+    width: 25vw;
+    height: 90vh;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.shipping-heading {
+    text-align: center;
+    color: rgba(0, 0, 0, 0.664);
+    font-size: 1rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.205);
+    width: 50%;
+    margin: auto;
+}
+
+.shipping-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    justify-content: space-evenly;
+    height: 80%;
+    transition: all 0.5s;
+}
+
+.shipping-form > div {
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
+.shipping-form > div > input,
+.shipping-form > div > select {
+    padding: 1rem 4rem;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.267);
+    border-radius: 8px;
+    outline: none;
+}
+
+.shipping-form > div > input::-webkit-outer-spin-button,
+.shipping-form > div > input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.shipping-form > div > select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.shipping-form > div > svg {
+    position: absolute;
+    transform: translateX(1rem);
+    font-size: 1.6rem;
+    color: rgba(0, 0, 0, 0.623);
+}
+
+.shipping-button {
+    border: none;
+    background-color: #34495e;
+    color: white;
+    width: 100%;
+    padding: 1rem;
+    cursor: pointer;
+    transition: all 0.5s;
+    outline: none;
+    margin: 2rem;
+}
+
+.shipping-button:hover {
+    background-color: #2c3e50;
+}
+
+@media screen and (max-width: 600px) {
+    .shipping-box {
+        width: 100vw;
+        height: max-content;
+    }
+
+    .shipping-heading {
+        font-size: 2rem;
+        padding: 5vw 0;
+    }
+
+    .shipping-form {
+        padding: 11vw;
+    }
+
+    .shipping-form > div > input,
+    .shipping-form > div > select {
+        padding: 1rem 5rem;
+        margin: 10px 0px;
+    }
+
+    .shipping-form > div > svg {
+        font-size: 6vw;
+        transform: translateX(3vw);
+    }
+
+    .shipping-button {
+        padding: 4vw;
+    }
+}

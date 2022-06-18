@@ -121,7 +121,7 @@
 }
 
 @media screen and (max-width: 960px) {
-    .cart-input > button {
+    .cart-page button {
         display: block;
     }
 }
