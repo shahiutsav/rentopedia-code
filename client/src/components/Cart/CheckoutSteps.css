@@ -1,0 +1,25 @@
+.MuiPaper-root.MuiStepper-root.MuiStepper-horizontal.MuiStepper-alternativeLabel.MuiPaper-elevation0 {
+    padding-top: 100px;
+}
+
+span.MuiStepLabel-root.MuiStepLabel-horizontal.Mui-disabled.MuiStepLabel-alternativeLabel {
+    color: #95a5a6 !important;
+}
+
+span.MuiStepLabel-root.MuiStepLabel-horizontal.MuiStepLabel-alternativeLabel {
+    color: #16a085 !important;
+}
+
+.MuiStepConnector-line {
+    display: none !important;
+}
+
+.MuiStepConnector-root {
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.349);
+}
+
+.MuiStepConnector-active,
+.MuiStepConnector-completed {
+    background-color: #34495e;
+}

@@ -8,11 +8,11 @@ import FaceIcon from "@material-ui/icons/Face";
 import { useDispatch, useSelector } from "react-redux";
 import { clearErrors, login, register } from "../../actions/userAction";
 import { useAlert } from "react-alert";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const LoginSignUp = () => {
     const navigate = useNavigate();
-
+    const location = useLocation();
     const dispatch = useDispatch();
     const alert = useAlert();
     const { error, loading, isAuthenticated } = useSelector(
@@ -68,6 +68,10 @@ const LoginSignUp = () => {
         }
     };
 
+    const redirect = location.search
+        ? "/" + location.search.split("=")[1]
+        : "/me";
+
     useEffect(() => {
         if (error) {
             alert.error(error);
@@ -75,7 +79,7 @@ const LoginSignUp = () => {
         }
 
         if (isAuthenticated) {
-            navigate("/");
+            navigate(redirect);
         }
     }, [dispatch, error, alert, navigate, isAuthenticated]);
 
