@@ -23,7 +23,7 @@ const MyOrders = () => {
             field: "id",
             headerName: "Order ID",
             minWidth: 250,
-            flex: .75,
+            flex: 0.75,
         },
         {
             field: "status",
@@ -32,8 +32,8 @@ const MyOrders = () => {
             flex: 0.25,
             cellClassName: (params) => {
                 return params.getValue(params.id, "status") === "Delivered"
-                    ? "greenColor"
-                    : "redColor";
+                    ? "green-color"
+                    : "red-color";
             },
         },
         {
