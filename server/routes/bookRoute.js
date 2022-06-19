@@ -16,11 +16,11 @@ const router = express.Router();
 router.route("/books").get(getAllBooks);
 
 router
-    .route("/books/new")
+    .route("/admin/books/new")
     .post(isAuthenticatedUser, authorizeRoles("admin"), createBook);
 
 router
-    .route("/books/:id")
+    .route("/admin/books/:id")
     .put(isAuthenticatedUser, authorizeRoles("admin"), updateBook)
     .delete(isAuthenticatedUser, authorizeRoles("admin"), deleteBook)
     .get(getBookDetails);
