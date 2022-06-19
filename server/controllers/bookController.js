@@ -181,3 +181,15 @@ exports.deleteReview = catchAsyncErrors(async (req, res, next) => {
         success: true,
     });
 });
+
+// Get All Books (Admin)
+exports.getAdminBooks = catchAsyncErrors(async (req, res) => {
+    const books = await Book.find();
+
+    res.status(200).json({
+        success: true,
+        books,
+        bookCount,
+        resultPerPage,
+    });
+});

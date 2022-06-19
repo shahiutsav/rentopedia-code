@@ -8,6 +8,7 @@ const {
     createBookReview,
     getBookReviews,
     deleteReview,
+    getAdminBooks,
 } = require("../controllers/bookController");
 const { isAuthenticatedUser, authorizeRoles } = require("../middleware/auth");
 
@@ -15,6 +16,9 @@ const router = express.Router();
 
 router.route("/books").get(getAllBooks);
 
+router
+    .route("/admin/books")
+    .get(isAuthenticatedUser, authorizeRoles("admin"), getAdminBooks);
 router
     .route("/admin/books/new")
     .post(isAuthenticatedUser, authorizeRoles("admin"), createBook);
