@@ -22,8 +22,9 @@ router
 router
     .route("/admin/books/:id")
     .put(isAuthenticatedUser, authorizeRoles("admin"), updateBook)
-    .delete(isAuthenticatedUser, authorizeRoles("admin"), deleteBook)
-    .get(getBookDetails);
+    .delete(isAuthenticatedUser, authorizeRoles("admin"), deleteBook);
+
+router.route("/books/:id").get(getBookDetails);
 
 router
     .route("/review")

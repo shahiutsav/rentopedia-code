@@ -213,7 +213,7 @@ exports.getAllUsers = catchAsyncErrors(async (req, res, next) => {
 });
 
 // View one user detail (admin privilege)
-exports.getUserDetails = catchAsyncErrors(async (req, res, next) => {
+exports.getSingleUser = catchAsyncErrors(async (req, res, next) => {
     const user = await User.findById(req.params.id);
 
     if (!user) {
