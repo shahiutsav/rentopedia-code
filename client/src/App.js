@@ -26,6 +26,7 @@ import axios from "axios";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import OrderSuccess from "./components/Cart/OrderSuccess";
+import MyOrders from "./components/Order/MyOrders";
 
 function App() {
     const { isAuthenticated, user } = useSelector((state) => state.user);
@@ -129,6 +130,15 @@ function App() {
                         element={
                             <ProtectedRoute>
                                 <OrderSuccess />
+                            </ProtectedRoute>
+                        }
+                    />
+
+                    <Route
+                        path="/orders"
+                        element={
+                            <ProtectedRoute>
+                                <MyOrders />
                             </ProtectedRoute>
                         }
                     />
