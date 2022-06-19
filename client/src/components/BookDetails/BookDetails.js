@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 import { useAlert } from "react-alert";
 
 // Additional components
-import ReactStars from "react-rating-stars-component";
 import ReviewCard from "./ReviewCard.js";
 import Loader from "../layout/Loader/Loader";
 import {
@@ -79,12 +78,9 @@ const BookDetails = () => {
 
     // Options for rating
     const options = {
-        edit: false,
-        color: "rgba(20, 20, 20, 0.1)",
-        activeColor: "#ffc107",
         value: book.ratings,
-        isHalf: true,
-        size: window.innerWidth < 600 ? 20 : 25,
+        size: "large",
+        readOnly: true,
     };
 
     const [quantity, setQuantity] = useState(1);
@@ -122,8 +118,13 @@ const BookDetails = () => {
 
                                 {/* Review of the Book */}
                                 <div className="review-section-details">
-                                    <ReactStars {...options} />
-                                    <span>({book.numOfReviews} Reviews)</span>
+                                    <div className="rating-only">
+                                        <Rating {...options} />
+                                        <span>
+                                            ({book.numOfReviews} Reviews)
+                                        </span>
+                                    </div>
+
                                     <button
                                         className="btn-submit-review"
                                         onClick={submitReviewToggle}

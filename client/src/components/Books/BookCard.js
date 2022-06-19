@@ -1,16 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import ReactStars from "react-rating-stars-component";
+import { Rating } from "@material-ui/lab";
 import "./BookCard.css";
 
 const BookCard = ({ book }) => {
     const options = {
-        edit: false,
-        color: "rgba(20, 20, 20, 0.1",
-        activeColor: "#ffc107",
         value: book.ratings,
-        isHalf: true,
-        size: window.innerWidth < 600 ? 20 : 25,
+        size: "medium",
+        readOnly: true,
     };
     return (
         <div className="col-4">
@@ -20,7 +17,7 @@ const BookCard = ({ book }) => {
                 <h4>{book.title}</h4>
                 <p> {book.description} </p>
                 <div className="review-section">
-                    <ReactStars {...options} />
+                    <Rating {...options} />
                 </div>
             </div>
             <Link className="button-detail" to={`/book/${book._id}`}>

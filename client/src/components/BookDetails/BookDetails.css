@@ -23,7 +23,8 @@
 }
 
 .book-details h3 {
-    margin: 20px 0;
+    margin-bottom: 8px;
+    margin-top: 28px;
     font-size: 22px;
     font-weight: bold;
 }
@@ -77,10 +78,10 @@
 
 .btn-submit-review {
     border: none;
+    height: 32px;
     background: #d35400;
     color: white;
-    padding: 8px 15px;
-    margin: 10px 20px;
+    padding: 0px 20px;
     border-radius: 30px;
     cursor: pointer;
     transition: all 0.5s;
@@ -95,10 +96,20 @@
 }
 
 .review-section-details {
+    display: flex;
+    gap: 18px;
     text-decoration: none;
     color: #555;
     margin-top: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 32px;
+    width: max-content;
+}
+
+.rating-only {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
 }
 
 .reviewsHeading {
@@ -203,6 +214,10 @@
     }
 
     .book-details .col-2 h4 {
+        font-size: 14px;
+    }
+
+    .book-details h3 {
         font-size: 14px;
     }
 

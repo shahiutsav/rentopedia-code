@@ -1,14 +1,11 @@
 import React from "react";
-import ReactStars from "react-rating-stars-component";
+import { Rating } from "@material-ui/lab";
 
 const ReviewCard = ({ review }) => {
     const options = {
-        edit: false,
-        color: "rgba(20, 20, 20, 0.1)",
-        activeColor: "rgb(254, 180, 42)",
         value: review.rating,
-        isHalf: true,
-        size: window.innerWidth < 600 ? 20 : 25,
+        size: "large",
+        readOnly: true,
     };
     return (
         <div className="review">
@@ -22,7 +19,7 @@ const ReviewCard = ({ review }) => {
             <div className="body-review">
                 <div className="name-review">{review.name}</div>
                 <div className="rating">
-                    <ReactStars {...options} />
+                    <Rating {...options} />
                 </div>
                 <div className="desc-review">{review.comment}</div>
             </div>
