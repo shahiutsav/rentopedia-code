@@ -1,12 +1,78 @@
 .dashboard {
-    min-height: 100vh;
+    min-height: 150vh;
+    height: max-content;
     width: 100vw;
     max-width: 100%;
     display: grid;
+    grid-template-columns: 15rem 5fr;
 }
 
 .dashboard-container {
-    border-left: 1px solid rgba(0, 0, 0, 0.13);
+    position: absolute;
     background-color: rgb(255, 255, 255);
     padding: 3rem 0;
+    padding-top: 100px;
+    width: calc(100% - 15rem);
+    right: 0;
+}
+
+.dashboard-container > h1 {
+    color: rgba(0, 0, 0, 0.733);
+    font-weight: 600;
+    font-size: 2rem;
+    text-align: center;
+    width: 50%;
+    padding: 1.5rem;
+    margin: auto;
+}
+
+.dashboard-summary > div {
+    display: flex;
+    background-color: white;
+    justify-content: center;
+}
+
+.dashboard-summary > div > p {
+    background-color: rgba(70, 117, 218, 0.932);
+    color: white;
+    font-size: 1.3rem;
+    text-align: center;
+    padding: 1.5rem;
+    width: 100%;
+    line-height: 2;
+}
+
+.dashboard-summary-box-2 > a {
+    cursor: pointer;
+    color: rgb(0, 0, 0);
+    font-size: 1.3rem;
+    text-align: center;
+    line-height: 2;
+    background-color: rgb(255, 233, 174);
+    text-decoration: none;
+    padding: 1.5rem;
+    width: 10vmax;
+    height: 10vmax;
+    margin: 2rem;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.dashboard-summary-box-2 > a:first-child {
+    background-color: rgb(255, 110, 110);
+    color: rgb(255, 255, 255);
+}
+
+.dashboard-summary-box-2 > a:last-child {
+    background-color: rgb(51, 51, 51);
+    color: rgb(255, 255, 255);
+}
+
+.line-chart {
+    width: 80%;
+    margin: auto;
+    margin-top: 50px;
 }
