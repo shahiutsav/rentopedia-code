@@ -33,6 +33,7 @@ import BookList from "./components/Admin/BookList";
 import NewBook from "./components/Admin/NewBook";
 import UpdateBook from "./components/Admin/UpdateBook";
 import OrderList from "./components/Admin/OrderList";
+import ProcessOrder from "./components/Admin/ProcessOrder";
 
 function App() {
     const { isAuthenticated, user } = useSelector((state) => state.user);
@@ -199,6 +200,14 @@ function App() {
                         element={
                             <ProtectedRoute isAdmin={true}>
                                 <OrderList />
+                            </ProtectedRoute>
+                        }
+                    />
+                    <Route
+                        path="/admin/order/:id"
+                        element={
+                            <ProtectedRoute isAdmin={true}>
+                                <ProcessOrder />
                             </ProtectedRoute>
                         }
                     />
