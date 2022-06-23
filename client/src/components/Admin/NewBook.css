@@ -1,0 +1,163 @@
+.new-book-container {
+    position: absolute;
+    background-color: rgb(255, 255, 255);
+    padding: 3rem 0;
+    padding-top: 100px;
+    width: calc(100% - 15rem);
+    right: 0;
+}
+.new-book-container h1 {
+    color: rgba(0, 0, 0, 0.733);
+    font-weight: 600;
+    font-size: 2rem;
+    text-align: center;
+    width: 50%;
+    padding: 1.5rem;
+    margin: auto;
+}
+
+.create-book-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    padding: 3vmax;
+    justify-content: space-evenly;
+    height: 70%;
+    width: 70%;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.267);
+}
+
+.create-book-form > div {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    margin-bottom: 16px;
+}
+.create-book-form > div > input,
+.create-book-form > div > select,
+.create-book-form > div > textarea {
+    padding: 1vmax 4vmax;
+    padding-right: 1vmax;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.267);
+    border-radius: 4px;
+    outline: none;
+}
+
+.create-book-form > div > svg {
+    position: absolute;
+    transform: translateX(1vmax);
+    font-size: 1.6vmax;
+    color: rgba(0, 0, 0, 0.623);
+}
+
+#createBookFormFile > input {
+    display: flex;
+    padding: 0%;
+}
+
+.disable-option {
+    font-weight: 900;
+    font-size: 1rem;
+}
+
+#createBookFormFile > input::file-selector-button {
+    cursor: pointer;
+    width: 100%;
+    z-index: 2;
+    height: 5vh;
+    border: none;
+    margin: 0%;
+    transition: all 0.5s;
+    padding: 0 1vmax;
+    color: rgba(0, 0, 0, 0.623);
+    background-color: rgb(255, 255, 255);
+}
+
+#createBookFormFile > input::file-selector-button:hover {
+    background-color: rgb(235, 235, 235);
+}
+
+#createBookFormCover {
+    overflow: auto;
+}
+
+#createBookFormCover > img {
+    height: 13.6rem;
+    width: 8.5rem;
+    object-fit: cover;
+    border-radius: 12px;
+    margin: auto;
+}
+#createBookBtn {
+    border: none;
+    background-color: #34495e;
+    color: white;
+    width: 100%;
+    padding: 0.8vmax;
+    cursor: pointer;
+    transition: all 0.5s;
+    border-radius: 4px;
+    outline: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.219);
+}
+
+#createBookBtn:hover {
+    background-color: #2c3e50;
+}
+
+.book-col-2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10rem;
+}
+
+.book-cover-info {
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.book-cover-info > p {
+    font-weight: 700;
+    font-size: 0.7rem;
+}
+
+@media screen and (max-width: 600px) {
+    .new-book-container {
+        background-color: rgb(255, 255, 255);
+    }
+    .create-book-form {
+        padding: 5vmax;
+    }
+
+    .create-book-form > div > input,
+    .create-book-form > div > select,
+    .create-book-form > div > textarea {
+        padding: 2.5vmax 5vmax;
+        font: 300 1.7vmax cursive;
+    }
+
+    .create-book-form > div > svg {
+        font-size: 2.8vmax;
+    }
+
+    #createBookFormFile > img {
+        width: 8vmax;
+        border-radius: 100%;
+    }
+
+    #createBookFormFile > input::file-selector-button {
+        height: 7vh;
+        font: 400 1.8vmax cursive;
+    }
+
+    #createBookBtn {
+        padding: 1.8vmax;
+    }
+}

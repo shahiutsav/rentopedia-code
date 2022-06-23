@@ -28,6 +28,15 @@ import { loadStripe } from "@stripe/stripe-js";
 import OrderSuccess from "./components/Cart/OrderSuccess";
 import MyOrders from "./components/Order/MyOrders";
 import OrderDetails from "./components/Order/OrderDetails";
+import Dashboard from "./components/Admin/Dashboard";
+import BookList from "./components/Admin/BookList";
+import NewBook from "./components/Admin/NewBook";
+import UpdateBook from "./components/Admin/UpdateBook";
+import OrderList from "./components/Admin/OrderList";
+import ProcessOrder from "./components/Admin/ProcessOrder";
+import UsersList from "./components/Admin/UsersList";
+import UpdateUser from "./components/Admin/UpdateUser";
+import BookReviews from "./components/Admin/BookReviews";
 
 function App() {
     const { isAuthenticated, user } = useSelector((state) => state.user);
@@ -149,6 +158,83 @@ function App() {
                         element={
                             <ProtectedRoute>
                                 <OrderDetails />
+                            </ProtectedRoute>
+                        }
+                    />
+
+                    <Route
+                        path="/admin/dashboard"
+                        element={
+                            <ProtectedRoute isAdmin={true}>
+                                <Dashboard />
+                            </ProtectedRoute>
+                        }
+                    />
+
+                    <Route
+                        path="/admin/books"
+                        element={
+                            <ProtectedRoute isAdmin={true}>
+                                <BookList />
+                            </ProtectedRoute>
+                        }
+                    />
+
+                    <Route
+                        path="/admin/book"
+                        element={
+                            <ProtectedRoute isAdmin={true}>
+                                <NewBook />
+                            </ProtectedRoute>
+                        }
+                    />
+
+                    <Route
+                        path="/admin/book/:id"
+                        element={
+                            <ProtectedRoute isAdmin={true}>
+                                <UpdateBook />
+                            </ProtectedRoute>
+                        }
+                    />
+
+                    <Route
+                        path="/admin/orders"
+                        element={
+                            <ProtectedRoute isAdmin={true}>
+                                <OrderList />
+                            </ProtectedRoute>
+                        }
+                    />
+                    <Route
+                        path="/admin/order/:id"
+                        element={
+                            <ProtectedRoute isAdmin={true}>
+                                <ProcessOrder />
+                            </ProtectedRoute>
+                        }
+                    />
+                    <Route
+                        path="/admin/users"
+                        element={
+                            <ProtectedRoute isAdmin={true}>
+                                <UsersList />
+                            </ProtectedRoute>
+                        }
+                    />
+                    <Route
+                        path="/admin/user/:id"
+                        element={
+                            <ProtectedRoute isAdmin={true}>
+                                <UpdateUser />
+                            </ProtectedRoute>
+                        }
+                    />
+                    <Route
+                        path="/admin/reviews"
+                        element={
+                            <ProtectedRoute isAdmin={true}>
+                                <BookReviews />
                             </ProtectedRoute>
                         }
                     />

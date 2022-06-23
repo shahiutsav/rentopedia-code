@@ -2,11 +2,27 @@ const Book = require("../models/bookModel");
 const ErrorHandler = require("../utils/errorHandler");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const ApiFeatures = require("../utils/apiFeatures");
+const cloudinary = require("cloudinary");
 
 // Create Book -- Admin
 exports.createBook = catchAsyncErrors(async (req, res, next) => {
-    req.body.user = req.user.id;
-    const book = await Book.create(req.body);
+    const myCloud = await cloudinary.v2.uploader.upload(req.body.cover, {
+        folder: "covers",
+    });
+
+    const { title, description, price, genre } = req.body;
+
+    const book = await Book.create({
+        title,
+        description,
+        price,
+        genre,
+        user: req.user.id,
+        cover: {
+            public_id: myCloud.public_id,
+            url: myCloud.secure_url,
+        },
+    });
 
     res.status(201).json({
         success: true,
@@ -54,6 +70,37 @@ exports.updateBook = catchAsyncErrors(async (req, res, next) => {
         return next(new ErrorHandler("Book not found", 404));
     }
 
+    // Cover Start Here
+    let cover = [];
+
+    if (typeof req.body.cover === "string") {
+        cover.push(req.body.cover);
+    } else {
+        cover = req.body.cover;
+    }
+
+    if (cover !== undefined) {
+        // Deleting Images From Cloudinary
+        for (let i = 0; i < book.cover.length; i++) {
+            await cloudinary.v2.uploader.destroy(book.cover[i].public_id);
+        }
+
+        const coverLinks = [];
+
+        for (let i = 0; i < cover.length; i++) {
+            const result = await cloudinary.v2.uploader.upload(cover[i], {
+                folder: "covers",
+            });
+
+            coverLinks.push({
+                public_id: result.public_id,
+                url: result.secure_url,
+            });
+        }
+
+        req.body.cover = coverLinks;
+    }
+
     book = await Book.findByIdAndUpdate(req.params.id, req.body, {
         new: true,
         runValidators: true,
@@ -61,7 +108,7 @@ exports.updateBook = catchAsyncErrors(async (req, res, next) => {
     });
 
     res.status(200).json({
-        succes: true,
+        success: true,
         book,
     });
 });
@@ -179,5 +226,15 @@ exports.deleteReview = catchAsyncErrors(async (req, res, next) => {
 
     res.status(200).json({
         success: true,
+    });
+});
+
+// Get All Books (Admin)
+exports.getAdminBooks = catchAsyncErrors(async (req, res) => {
+    const books = await Book.find();
+
+    res.status(200).json({
+        success: true,
+        books,
     });
 });

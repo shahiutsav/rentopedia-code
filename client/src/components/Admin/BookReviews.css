@@ -1,0 +1,61 @@
+.book-reviews-container {
+    position: absolute;
+    background-color: rgb(255, 255, 255);
+    padding: 3rem 0;
+    padding-top: 100px;
+    width: calc(100% - 15rem);
+    right: 0;
+}
+
+.book-reviews-form {
+    width: 20rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    padding: 3vmax;
+    background-color: white;
+}
+
+.book-reviews-form-heading {
+    color: rgba(0, 0, 0, 0.733);
+    text-align: center;
+}
+
+.book-reviews-form > div {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    margin: 2rem;
+}
+.book-reviews-form > div > input {
+    padding: 1vmax 4vmax;
+    padding-right: 1vmax;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.267);
+    border-radius: 4px;
+    outline: none;
+}
+
+.book-reviews-form > div > svg {
+    position: absolute;
+    transform: translateX(1vmax);
+    font-size: 1.6vmax;
+    color: rgba(0, 0, 0, 0.623);
+}
+
+@media screen and (max-width: 600px) {
+    .book-review-container {
+        border-left: none;
+        border-top: 1px solid rgba(0, 0, 0, 0.158);
+    }
+    .book-reviews-form > div > input {
+        padding: 2.5vmax 5vmax;
+        font: 300 1.7vmax cursive;
+    }
+
+    .book-reviews-form > div > svg {
+        font-size: 2.8vmax;
+    }
+}

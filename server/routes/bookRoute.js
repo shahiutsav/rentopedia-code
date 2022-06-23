@@ -8,6 +8,7 @@ const {
     createBookReview,
     getBookReviews,
     deleteReview,
+    getAdminBooks,
 } = require("../controllers/bookController");
 const { isAuthenticatedUser, authorizeRoles } = require("../middleware/auth");
 
@@ -16,14 +17,18 @@ const router = express.Router();
 router.route("/books").get(getAllBooks);
 
 router
-    .route("/books/new")
+    .route("/admin/books")
+    .get(isAuthenticatedUser, authorizeRoles("admin"), getAdminBooks);
+router
+    .route("/admin/books/new")
     .post(isAuthenticatedUser, authorizeRoles("admin"), createBook);
 
 router
-    .route("/books/:id")
+    .route("/admin/books/:id")
     .put(isAuthenticatedUser, authorizeRoles("admin"), updateBook)
-    .delete(isAuthenticatedUser, authorizeRoles("admin"), deleteBook)
-    .get(getBookDetails);
+    .delete(isAuthenticatedUser, authorizeRoles("admin"), deleteBook);
+
+router.route("/books/:id").get(getBookDetails);
 
 router
     .route("/review")

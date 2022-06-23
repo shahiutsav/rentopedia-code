@@ -30,6 +30,7 @@ const bookSchema = new mongoose.Schema({
             },
         },
     ],
+
     genre: {
         type: String,
         required: [true, "Please select the book's genre"],
@@ -70,9 +71,6 @@ const bookSchema = new mongoose.Schema({
     createdAt: {
         type: Date,
         default: Date.now,
-    },
-    datePublished: {
-        type: Date,
     },
 });
 
