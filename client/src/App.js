@@ -30,6 +30,7 @@ import MyOrders from "./components/Order/MyOrders";
 import OrderDetails from "./components/Order/OrderDetails";
 import Dashboard from "./components/Admin/Dashboard";
 import BookList from "./components/Admin/BookList";
+import NewBook from "./components/Admin/NewBook";
 
 function App() {
     const { isAuthenticated, user } = useSelector((state) => state.user);
@@ -169,6 +170,15 @@ function App() {
                         element={
                             <ProtectedRoute isAdmin={true}>
                                 <BookList />
+                            </ProtectedRoute>
+                        }
+                    />
+
+                    <Route
+                        path="/admin/book"
+                        element={
+                            <ProtectedRoute isAdmin={true}>
+                                <NewBook />
                             </ProtectedRoute>
                         }
                     />

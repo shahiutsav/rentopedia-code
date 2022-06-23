@@ -23,6 +23,7 @@ import {
 } from "../../actions/bookAction";
 import MetaData from "../layout/MetaData.js";
 import { addItemsToCart } from "../../actions/cartAction";
+import { NEW_REVIEW_RESET } from "../../constants/bookConstants";
 
 // Style import
 import "./BookDetails.css";
@@ -33,6 +34,15 @@ const BookDetails = () => {
     const alert = useAlert();
 
     const { book, loading, error } = useSelector((state) => state.bookDetails);
+
+    const { success, error: reviewError } = useSelector(
+        (state) => state.newReview
+    );
+
+    const [quantity, setQuantity] = useState(1);
+    const [rating, setRating] = useState(0);
+    const [open, setOpen] = useState(false);
+    const [comment, setComment] = useState("");
 
     const increaseQuantity = () => {
         if (6 <= quantity) return;
@@ -73,8 +83,16 @@ const BookDetails = () => {
             alert.error(error);
             dispatch(clearErrors());
         }
+        if (reviewError) {
+            alert.error(reviewError);
+            dispatch(clearErrors());
+        }
+        if (success) {
+            alert.success("Review Submitted Successfully");
+            dispatch({ type: NEW_REVIEW_RESET });
+        }
         dispatch(getBookDetails(id));
-    }, [dispatch, id]);
+    }, [dispatch, id, error, alert, reviewError, success]);
 
     // Options for rating
     const options = {
@@ -83,19 +101,15 @@ const BookDetails = () => {
         readOnly: true,
         precision: 0.5,
     };
-
-    const [quantity, setQuantity] = useState(1);
-    const [rating, setRating] = useState(0);
-    const [open, setOpen] = useState(false);
-    const [comment, setComment] = useState("");
+    // console.log(book.cover.url);
 
     return (
         <Fragment>
-            <MetaData title={book.name} />
             {loading ? (
                 <Loader />
             ) : (
                 <Fragment>
+                    <MetaData title={book.title} />
                     {/* Book Details section */}
                     <div className="small-container book-details">
                         <div className="row-book-detail">
@@ -104,7 +118,7 @@ const BookDetails = () => {
                                 {book.cover &&
                                     book.cover.map((item, i) => (
                                         <img
-                                            className="book-cover"
+                                            className="CarouselImage"
                                             key={item.url}
                                             src={item.url}
                                             alt={`${i} Slide`}

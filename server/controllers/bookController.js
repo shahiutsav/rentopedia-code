@@ -2,11 +2,27 @@ const Book = require("../models/bookModel");
 const ErrorHandler = require("../utils/errorHandler");
 const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const ApiFeatures = require("../utils/apiFeatures");
+const cloudinary = require("cloudinary");
 
 // Create Book -- Admin
 exports.createBook = catchAsyncErrors(async (req, res, next) => {
-    req.body.user = req.user.id;
-    const book = await Book.create(req.body);
+    const myCloud = await cloudinary.v2.uploader.upload(req.body.cover, {
+        folder: "covers",
+    });
+
+    const { title, description, price, genre } = req.body;
+
+    const book = await Book.create({
+        title,
+        description,
+        price,
+        genre,
+        user: req.user.id,
+        cover: {
+            public_id: myCloud.public_id,
+            url: myCloud.secure_url,
+        },
+    });
 
     res.status(201).json({
         success: true,
