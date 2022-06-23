@@ -34,12 +34,16 @@
     transition: all 0.5s;
 }
 
+.book-list-table a {
+    line-height: 0;
+}
+
 .book-list-table a:hover {
-    color: tomato;
+    color: #70a1ff;
 }
 
 .book-list-table button:hover {
-    color: rgb(236, 30, 30);
+    color: #ff4757;
 }
 
 .MuiDataGrid-columnHeader div {
