@@ -1,7 +1,10 @@
 import React, { Fragment, useEffect, useState } from "react";
-import "./NewBook.css";
 import { useSelector, useDispatch } from "react-redux";
-import { clearErrors, createBook } from "../../actions/bookAction";
+import {
+    clearErrors,
+    updateBook,
+    getBookDetails,
+} from "../../actions/bookAction";
 import { useAlert } from "react-alert";
 import { Button } from "@material-ui/core";
 import MetaData from "../layout/MetaData";
@@ -10,21 +13,28 @@ import DescriptionIcon from "@material-ui/icons/Description";
 import SpellcheckIcon from "@material-ui/icons/Spellcheck";
 import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
 import SideBar from "./Sidebar";
-import { NEW_BOOK_RESET } from "../../constants/bookConstants";
-import { useNavigate } from "react-router-dom";
+import { UPDATE_BOOK_RESET } from "../../constants/bookConstants";
+import { useNavigate, useParams } from "react-router-dom";
 
-const NewBook = () => {
+const UpdateBook = () => {
     const dispatch = useDispatch();
     const alert = useAlert();
     const navigate = useNavigate();
+    const { id } = useParams();
+    const { error, book } = useSelector((state) => state.bookDetails);
 
-    const { loading, error, success } = useSelector((state) => state.newBook);
+    const {
+        loading,
+        error: updateError,
+        isUpdated,
+    } = useSelector((state) => state.book);
 
     const [title, setTitle] = useState("");
     const [price, setPrice] = useState(0);
     const [description, setDescription] = useState("");
     const [genre, setGenre] = useState("");
-    const [cover, setCover] = useState();
+    const [cover, setCover] = useState([]);
+    const [oldCover, setOldCover] = useState([]);
     const [coverPreview, setCoverPreview] = useState("/BookCover.png");
 
     const categoriesFiction = [
@@ -89,19 +99,33 @@ const NewBook = () => {
     ];
 
     useEffect(() => {
+        if (book && book._id !== id) {
+            dispatch(getBookDetails(id));
+        } else {
+            setTitle(book.title);
+            setDescription(book.description);
+            setPrice(book.price);
+            setGenre(book.genre);
+            setOldCover(book.cover);
+        }
         if (error) {
             alert.error(error);
             dispatch(clearErrors());
         }
 
-        if (success) {
-            alert.success("Book Created Successfully");
-            navigate("/admin/dashboard");
-            dispatch({ type: NEW_BOOK_RESET });
+        if (updateError) {
+            alert.error(updateError);
+            dispatch(clearErrors());
         }
-    }, [dispatch, alert, error, navigate, success]);
 
-    const createBookSubmitHandler = (e) => {
+        if (isUpdated) {
+            alert.success("Book Updated Successfully");
+            navigate("/admin/books");
+            dispatch({ type: UPDATE_BOOK_RESET });
+        }
+    }, [dispatch, alert, error, navigate, isUpdated, id, book, updateError]);
+
+    const updateBookSubmitHandler = (e) => {
         e.preventDefault();
 
         const myForm = new FormData();
@@ -111,10 +135,10 @@ const NewBook = () => {
         myForm.set("description", description);
         myForm.set("genre", genre);
         myForm.set("cover", cover);
-        dispatch(createBook(myForm));
+        dispatch(updateBook(id, myForm));
     };
 
-    const createBookCoverChange = (e) => {
+    const updateBookCoverChange = (e) => {
         const reader = new FileReader();
 
         reader.onload = () => {
@@ -128,22 +152,22 @@ const NewBook = () => {
 
     return (
         <Fragment>
-            <MetaData title="Create Book" />
+            <MetaData title="Update Book" />
             <div className="dashboard">
                 <SideBar />
                 <div className="new-book-container">
                     <form
                         className="create-book-form"
                         encType="multipart/form-data"
-                        onSubmit={createBookSubmitHandler}
+                        onSubmit={updateBookSubmitHandler}
                     >
-                        <h1>Create Book</h1>
+                        <h1>Update Book</h1>
 
                         <div>
                             <SpellcheckIcon />
                             <input
                                 type="text"
-                                placeholder="Book Title"
+                                placeholder="Book Name"
                                 required
                                 value={title}
                                 onChange={(e) => setTitle(e.target.value)}
@@ -156,12 +180,16 @@ const NewBook = () => {
                                 placeholder="Price"
                                 required
                                 onChange={(e) => setPrice(e.target.value)}
+                                value={price}
                             />
                         </div>
 
                         <div>
                             <AccountTreeIcon />
-                            <select onChange={(e) => setGenre(e.target.value)}>
+                            <select
+                                value={genre}
+                                onChange={(e) => setGenre(e.target.value)}
+                            >
                                 <option
                                     disabled
                                     className="disable-option"
@@ -213,12 +241,35 @@ const NewBook = () => {
                                 type="file"
                                 name="cover"
                                 accept="image/*"
-                                onChange={createBookCoverChange}
+                                onChange={updateBookCoverChange}
+                                multiple
                             />
                         </div>
 
-                        <div id="createBookFormCover">
-                            <img src={coverPreview} alt="Cover Preview" />
+                        <div className="book-col-2">
+                            <div className="book-cover-info">
+                                <p>Previous Cover</p>
+                                <div id="createBookFormCover">
+                                    {oldCover &&
+                                        oldCover.map((item, i) => (
+                                            <img
+                                                key={item.url}
+                                                src={item.url}
+                                                alt={`${i} Slide`}
+                                            />
+                                        ))}
+                                </div>
+                            </div>
+
+                            <div className="book-cover-info">
+                                <p>Updated Cover</p>
+                                <div id="createBookFormCover">
+                                    <img
+                                        src={coverPreview}
+                                        alt="Cover Preview"
+                                    />
+                                </div>
+                            </div>
                         </div>
 
                         <Button
@@ -226,7 +277,7 @@ const NewBook = () => {
                             type="submit"
                             disabled={loading ? true : false}
                         >
-                            Create
+                            Update
                         </Button>
                     </form>
                 </div>
@@ -235,4 +286,4 @@ const NewBook = () => {
     );
 };
 
-export default NewBook;
+export default UpdateBook;

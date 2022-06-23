@@ -112,8 +112,6 @@ const BookList = () => {
 
     const rows = [];
 
-    console.log(books);
-
     books &&
         books.forEach((item) => {
             rows.push({

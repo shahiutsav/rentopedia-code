@@ -70,6 +70,37 @@ exports.updateBook = catchAsyncErrors(async (req, res, next) => {
         return next(new ErrorHandler("Book not found", 404));
     }
 
+    // Cover Start Here
+    let cover = [];
+
+    if (typeof req.body.cover === "string") {
+        cover.push(req.body.cover);
+    } else {
+        cover = req.body.cover;
+    }
+
+    if (cover !== undefined) {
+        // Deleting Images From Cloudinary
+        for (let i = 0; i < book.cover.length; i++) {
+            await cloudinary.v2.uploader.destroy(book.cover[i].public_id);
+        }
+
+        const coverLinks = [];
+
+        for (let i = 0; i < cover.length; i++) {
+            const result = await cloudinary.v2.uploader.upload(cover[i], {
+                folder: "covers",
+            });
+
+            coverLinks.push({
+                public_id: result.public_id,
+                url: result.secure_url,
+            });
+        }
+
+        req.body.cover = coverLinks;
+    }
+
     book = await Book.findByIdAndUpdate(req.params.id, req.body, {
         new: true,
         runValidators: true,
@@ -77,7 +108,7 @@ exports.updateBook = catchAsyncErrors(async (req, res, next) => {
     });
 
     res.status(200).json({
-        succes: true,
+        success: true,
         book,
     });
 });
