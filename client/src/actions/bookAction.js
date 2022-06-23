@@ -192,7 +192,7 @@ export const getAllReviews = (id) => async (dispatch) => {
     try {
         dispatch({ type: ALL_REVIEW_REQUEST });
 
-        const { data } = await axios.get(`/api/v1/reviews?id=${id}`);
+        const { data } = await axios.get(`/api/v1/review?id=${id}`);
 
         dispatch({
             type: ALL_REVIEW_SUCCESS,
@@ -207,12 +207,12 @@ export const getAllReviews = (id) => async (dispatch) => {
 };
 
 // Delete Review of a Product
-export const deleteReviews = (reviewId, productId) => async (dispatch) => {
+export const deleteReviews = (reviewId, bookId) => async (dispatch) => {
     try {
         dispatch({ type: DELETE_REVIEW_REQUEST });
 
         const { data } = await axios.delete(
-            `/api/v1/reviews?id=${reviewId}&productId=${productId}`
+            `/api/v1/review?id=${reviewId}&bookId=${bookId}`
         );
 
         dispatch({
