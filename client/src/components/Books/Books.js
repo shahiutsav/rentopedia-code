@@ -56,10 +56,10 @@ const Book = () => {
                                     itemsCountPerPage={resultPerPage}
                                     totalItemsCount={bookCount}
                                     onChange={setCurrentPageNo}
-                                    nextPageText=">"
-                                    prevPageText="<"
-                                    firstPageText="<<"
-                                    lastPageText=">>"
+                                    nextPageText="&#8250;"
+                                    prevPageText="&#8249;"
+                                    firstPageText="&#171;"
+                                    lastPageText="&#187;"
                                     itemClass="page-item"
                                     linkClass="page-link"
                                     activeClass="pageItemActive"
