@@ -160,7 +160,7 @@ const ProcessOrder = ({ match }) => {
                                                         alt="Product"
                                                     />
                                                     <Link
-                                                        to={`/product/${item.book}`}
+                                                        to={`/book/${item.book}`}
                                                     >
                                                         {item.title}
                                                     </Link>{" "}

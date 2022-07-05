@@ -46,20 +46,30 @@
 .page-item {
     background-color: rgb(255, 255, 255);
     list-style: none;
-    border-radius: 100px;
-    padding: 1rem 1.5rem;
+    line-height: 0;
+    width: 0.6rem;
+    height: 0.6rem;
+    padding: 1rem 1rem;
     transition: all 0.3s;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100px;
+    margin: 0px 5px;
+    border: 1px solid transparent;
 }
 
 .page-link {
     text-decoration: none;
     color: rgb(80, 80, 80);
     transition: all 0.3s;
+    font: 15px sans-serif;
 }
 
 .page-item:hover {
     background-color: rgb(230, 230, 230);
+    border: 1px solid #34495e;
 }
 
 .page-item:hover .page-link {
@@ -67,7 +77,7 @@
 }
 
 .pageItemActive {
-    background-color: tomato;
+    background-color: #34495e;
 }
 
 .pageLinkActive {
